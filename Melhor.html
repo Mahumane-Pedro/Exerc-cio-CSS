@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mahumane' Cars - Concessionária especializada em SUVs e picapes de qualidade em Moçambique">
+    <title>Mahumane' Cars - Veículos de Qualidade</title>
+    <style>
+        /* Reset e Variáveis */
+        :root {
+            --cor-primaria: #2c3e50;
+            --cor-secundaria: #3498db;
+            --cor-texto: #333;
+            --cor-fundo: #f5f5f5;
+            --cor-cabecalho: #2c3e50;
+            --cor-rodape: #222;
+            --cor-card: white;
+            --cor-borda: #ddd;
+            --cor-texto-claro: white;
+            --cor-destaque: #e74c3c;
+            --cor-sucesso: #2ecc71;
+        }
+
+        .dark-mode {
+            --cor-primaria: #34495e;
+            --cor-secundaria: #2980b9;
+            --cor-texto: #ecf0f1;
+            --cor-fundo: #2c3e50;
+            --cor-cabecalho: #1a252f;
+            --cor-rodape: #1a252f;
+            --cor-card: #34495e;
+            --cor-borda: #444;
+            --cor-texto-claro: #ecf0f1;
+            --cor-destaque: #c0392b;
+            --cor-sucesso: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--cor-cabecalho);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--cor-texto-claro);
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Menu de navegação */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cor-texto-claro);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover, nav a.active-link {
+            background-color: var(--cor-secundaria);
+            transform: translateY(-2px);
+        }
+
+        /* Botão modo escuro */
+        #darkModeToggle {
+            background-color: var(--cor-secundaria);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #darkModeToggle:hover {
+            background-color: var(--cor-primaria);
+        }
+
+        /* Conteúdo principal */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 70vh;
+        }
+
+        /* Seções */
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Seção Início */
+        #inicio {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        #inicio h2 {
+            color: var(--cor-primaria);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        #inicio p {
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .banner {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .banner:hover {
+            transform: scale(1.02);
+        }
+
+        .destaque {
+            color: var(--cor-destaque);
+            font-weight: bold;
+        }
+
+        /* Seção Estoque */
+        #estoque h2 {
+            text-align: center;
+            color: var(--cor-primaria);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .filtros {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filtros select, .filtros input {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--cor-borda);
+            background-color: var(--cor-card);
+            color: var(--cor-texto);
+        }
+
+        .car-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-item {
+            background-color: var(--cor-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .car-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .car-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .car-info {
+            padding: 1.5rem;
+        }
+
+        .car-info h3 {
+            color: var(--cor-primaria);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .car-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .car-price {
+            font-weight: bold;
+            color: var(--cor-destaque);
+            font-size: 1.2rem;
+        }
+
+        .car-year {
+            color: var(--cor-texto);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .car-km {
+            color: var(--cor-texto);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-detalhes {
+            display: inline-block;
+            background-color: var(--cor-secundaria);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-detalhes:hover {
+            background-color: var(--cor-primaria);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        /* Seção Serviços */
+        #servicos {
+            text-align: center;
+        }
+
+        #servicos h2 {
+            color: var(--cor-primaria);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        #servicos p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .servico-card {
+            background-color: var(--cor-card);
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .servico-icon {
+            font-size: 2.5rem;
+            color: var(--cor-secundaria);
+            margin-bottom: 1rem;
+        }
+
+        .servico-card h3 {
+            color: var(--cor-primaria);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Seção Contato */
+        #contato {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #contato h2 {
+            text-align: center;
+            color: var(--cor-primaria);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .contato-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contato-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background-color: var(--cor-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: var(--cor-primaria);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-contato {
+            background-color: var(--cor-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--cor-borda);
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-enviar {
+            background-color: var(--cor-secundaria);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background-color: var(--cor-primaria);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: var(--cor-card);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--cor-texto);
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: var(--cor-destaque);
+        }
+
+        .modal-carousel {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .modal-carousel img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .modal-carousel img:hover, .modal-carousel img.active {
+            border-color: var(--cor-secundaria);
+        }
+
+        .modal-main-img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            background-color: var(--cor-fundo);
+        }
+
+        .modal-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-price {
+            font-size: 1.8rem;
+            color: var(--cor-destaque);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-rodape);
+            color: var(--cor-texto-claro);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            color: var(--cor-texto-claro);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: var(--cor-texto-claro);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: var(--cor-texto-claro);
+            font-size: 1.8rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            .contato-container {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-column {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            nav a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .filtros {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-car logo-icon"></i>
+            <span>Mahumane' Cars</span>
+        </div>
+        <button id="darkModeToggle">
+            <i class="fas fa-moon"></i>
+            <span>Modo Escuro</span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="active-link" onclick="showSection('inicio')">
+                    <i class="fas fa-home"></i>
+                    <span>Início</span>
+                </a></li>
+                <li><a href="#estoque" onclick="showSection('estoque')">
+                    <i class="fas fa-car-side"></i>
+                    <span>Estoque</span>
+                </a></li>
+                <li><a href="#servicos" onclick="showSection('servicos')">
+                    <i class="fas fa-tools"></i>
+                    <span>Serviços</span>
+                </a></li>
+                <li><a href="#contato" onclick="showSection('contato')">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contato</span>
+                </a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="inicio" class="active">
+            <h2>Bem-vindo à <span class="destaque">Mahumane' Cars</span></h2>
+            <p>Os melhores SUVs e picapes do mercado com preços incríveis e condições especiais de pagamento! Oferecemos veículos de qualidade com garantia e procedência comprovada.</p>
+            
+            <div class="banner-container">
+                <img src="https://source.unsplash.com/random/1000x500/?suv,pickup" alt="Toyota Fortuner e Hilux - Mahumane' Cars" class="banner">
+            </div>
+        </section>
+        
+        <section id="estoque">
+            <h2>Nosso <span class="destaque">Estoque</span></h2>
+            
+            <div class="filtros">
+                <select id="filtroMarca">
+                    <option value="">Todas as Marcas</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Isuzu">Isuzu</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                </select>
+                
+                <select id="filtroTipo">
+                    <option value="">Todos os Tipos</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Picape">Picape</option>
+                </select>
+                
+                <select id="filtroPreco">
+                    <option value="">Qualquer Preço</option>
+                    <option value="1">Até 2.000.000 Mts</option>
+                    <option value="2">2.000.000 - 2.500.000 Mts</option>
+                    <option value="3">Acima de 2.500.000 Mts</option>
+                </select>
+            </div>
+            
+            <div class="car-container">
+                <div class="car-item" data-marca="Toyota" data-tipo="SUV" data-preco="3">
+                    <img src="https://source.unsplash.com/random/600x400/?toyota+fortuner" alt="Toyota Fortuner 4.0 V6">
+                    <div class="car-info">
+                        <h3>Toyota Fortuner 4.0 V6</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.800.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2022</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 25.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('toyota-fortuner')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Toyota%20Fortuner%204.0%20V6" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-item" data-marca="Toyota" data-tipo="Picape" data-preco="2">
+                    <img src="https://source.unsplash.com/random/600x400/?toyota+hilux" alt="Toyota Hilux 3.0 D4D">
+                    <div class="car-info">
+                        <h3>Toyota Hilux 3.0 D4D</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.500.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2021</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 35.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('toyota-hilux')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Toyota%20Hilux%203.0%20D4D" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-item" data-marca="Toyota" data-tipo="Picape" data-preco="3">
+                    <img src="https://source.unsplash.com/random/600x400/?toyota+hilux+new" alt="Toyota Hilux 2.8 GD6">
+                    <div class="car-info">
+                        <h3>Toyota Hilux 2.8 GD6</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.700.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2023</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 15.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('toyota-hilux-gd6')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Toyota%20Hilux%202.8%20GD6" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-item" data-marca="Isuzu" data-tipo="Picape" data-preco="2">
+                    <img src="https://source.unsplash.com/random/600x400/?isuzu+dmax" alt="Isuzu D-Max 3.0">
+                    <div class="car-info">
+                        <h3>Isuzu D-Max 3.0</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.300.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2020</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 40.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('isuzu-dmax')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Isuzu%20D-Max%203.0" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-item" data-marca="Nissan" data-tipo="Picape" data-preco="2">
+                    <img src="https://source.unsplash.com/random/600x400/?nissan+navara" alt="Nissan Navara 2.5">
+                    <div class="car-info">
+                        <h3>Nissan Navara 2.5</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.400.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2021</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 30.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('nissan-navara')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Nissan%20Navara%202.5" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="car-item" data-marca="Toyota" data-tipo="SUV" data-preco="3">
+                    <img src="https://source.unsplash.com/random/600x400/?toyota+fortuner+new" alt="Toyota Fortuner 2.8 GD6">
+                    <div class="car-info">
+                        <h3>Toyota Fortuner 2.8 GD6</h3>
+                        <p class="car-price"><i class="fas fa-tag"></i> 2.600.000 Mts</p>
+                        <p class="car-year"><i class="fas fa-calendar-alt"></i> 2022</p>
+                        <p class="car-km"><i class="fas fa-tachometer-alt"></i> 20.000 km</p>
+                        <div class="btn-container">
+                            <button class="btn-detalhes" onclick="openModal('toyota-fortuner-gd6')">
+                                <i class="fas fa-search"></i> Detalhes
+                            </button>
+                            <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20Toyota%20Fortuner%202.8%20GD6" class="btn-detalhes btn-whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="servicos">
+            <h2>Nossos <span class="destaque">Serviços</span></h2>
+            <p>Oferecemos soluções completas para sua necessidade automotiva, com transparência e qualidade. Conheça nossos serviços exclusivos:</p>
+            
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Financiamento</h3>
+                    <p>Condições especiais com as melhores taxas do mercado e aprovação rápida</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Consórcio</h3>
+                    <p>Adquira seu veículo novo sem juros através de nosso consórcio regulamentado</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantia Estendida</h3>
+                    <p>Proteção adicional para seu veículo com nossa garantia premium de até 3 anos</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Seguros</h3>
+                    <p>Parceria com as melhores seguradoras para proteger seu investimento</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Trocas</h3>
+                    <p>Avaliamos seu veículo atual para troca por um de nossos modelos</p>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">
+                        <i class="fas fa-car-crash"></i>
+                    </div>
+                    <h3>Assistência 24h</h3>
+                    <p>Serviço de assistência veicular 24 horas para clientes premium</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contato">
+            <h2>Entre em <span class="destaque">Contato</span></h2>
+            
+            <div class="contato-container">
+                <div class="contato-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-phone-alt"></i> Telefone</h3>
+                        <p><i class="fas fa-phone"></i> 86 720 6476</p>
+                        <p><i class="fas fa-clock"></i> Seg-Sex: 8h-18h</p>
+                        <p><i class="fas fa-clock"></i> Sáb: 9h-13h</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-envelope"></i> Email</h3>
+                        <p><i class="fas fa-inbox"></i> pedroananias658@gmail.com</p>
+                        <p><i class="fas fa-reply"></i> Respondemos em até 24h</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
+                        <p><i class="fas fa-road"></i> Av. Principal, 1234</p>
+                        <p><i class="fas fa-city"></i> Maputo, Moçambique</p>
+                    </div>
+                </div>
+                
+                <form class="form-contato" id="formContato">
+                    <div class="form-group">
+                        <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefone"><i class="fas fa-phone"></i> Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assunto"><i class="fas fa-tag"></i> Assunto</label>
+                        <select id="assunto" name="assunto">
+                            <option value="consulta">Consulta sobre veículo</option>
+                            <option value="financiamento">Financiamento</option>
+                            <option value="seguro">Seguro</option>
+                            <option value="outro">Outro assunto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem"><i class="fas fa-comment"></i> Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-enviar">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+            
+            <div class="whatsapp-container">
+                <a href="https://wa.me/258867206476" class="whatsapp-link" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Fale conosco no WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Modal de Detalhes do Veículo -->
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalCarDetails"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mahumane' Cars</h3>
+                <p>Concessionária especializada em SUVs e picapes de qualidade em Moçambique.</p>
+                <p>Oferecemos os melhores veículos com garantia e procedência comprovada.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio" onclick="showSection('inicio')"><i class="fas fa-chevron-right"></i> Início</a></li>
+                    <li><a href="#estoque" onclick="showSection('estoque')"><i class="fas fa-chevron-right"></i> Estoque</a></li>
+                    <li><a href="#servicos" onclick="showSection('servicos')"><i class="fas fa-chevron-right"></i> Serviços</a></li>
+                    <li><a href="#contato" onclick="showSection('contato')"><i class="fas fa-chevron-right"></i> Contato</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul>
+                    <li><a href="tel:+258867206476"><i class="fas fa-phone"></i> 86 720 6476</a></li>
+                    <li><a href="mailto:pedroananias658@gmail.com"><i class="fas fa-envelope"></i> pedroananias658@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Principal, 1234 - Maputo</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Mahumane' Cars. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Alternar modo escuro
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'true');
+                icon.classList.replace('fa-moon', 'fa-sun');
+                this.querySelector('span').textContent = 'Modo Claro';
+            } else {
+                localStorage.setItem('darkMode', 'false');
+                icon.classList.replace('fa-sun', 'fa-moon');
+                this.querySelector('span').textContent = 'Modo Escuro';
+            }
+        });
+        
+        // Verificar preferência salva
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkModeToggle').querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            document.getElementById('darkModeToggle').querySelector('span').textContent = 'Modo Claro';
+        }
+        
+        // Mostrar seção ativa
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            event.currentTarget.classList.add('active-link');
+            
+            // Rolagem suave para o topo da seção
+            window.scrollTo({
+                top: document.getElementById(sectionId).offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Filtros de estoque
+        document.querySelectorAll('#filtroMarca, #filtroTipo, #filtroPreco').forEach(filter => {
+            filter.addEventListener('change', filtrarCarros);
+        });
+        
+        function filtrarCarros() {
+            const marca = document.getElementById('filtroMarca').value;
+            const tipo = document.getElementById('filtroTipo').value;
+            const preco = document.getElementById('filtroPreco').value;
+            
+            document.querySelectorAll('.car-item').forEach(car => {
+                const carMarca = car.getAttribute('data-marca');
+                const carTipo = car.getAttribute('data-tipo');
+                const carPreco = car.getAttribute('data-preco');
+                
+                const marcaMatch = marca === '' || carMarca === marca;
+                const tipoMatch = tipo === '' || carTipo === tipo;
+                const precoMatch = preco === '' || carPreco === preco;
+                
+                if (marcaMatch && tipoMatch && precoMatch) {
+                    car.style.display = 'block';
+                } else {
+                    car.style.display = 'none';
+                }
+            });
+        }
+        
+        // Modal de detalhes do carro
+        function openModal(carId) {
+            const modal = document.getElementById('carModal');
+            const modalContent = document.getElementById('modalCarDetails');
+            
+            // Dados dos carros (em um sistema real, isso viria de um banco de dados)
+            const carros = {
+                'toyota-fortuner': {
+                    titulo: 'Toyota Fortuner 4.0 V6',
+                    preco: '2.800.000 Mts',
+                    ano: '2022',
+                    km: '25.000 km',
+                    cor: 'Prata',
+                    combustivel: 'Gasolina',
+                    cambio: 'Automático',
+                    portas: '4',
+                    motor: '4.0 V6 271cv',
+                    descricao: 'Toyota Fortuner 4.0 V6 em excelente estado, único dono, revisões sempre realizadas na concessionária. Veículo completo com ar-condicionado digital, bancos de couro, multimídia com tela sensível ao toque, câmera de ré, sensor de estacionamento, rodas de liga leve originais e muito mais.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+front',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+side',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+back',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+interior'
+                    ]
+                },
+                'toyota-hilux': {
+                    titulo: 'Toyota Hilux 3.0 D4D',
+                    preco: '2.500.000 Mts',
+                    ano: '2021',
+                    km: '35.000 km',
+                    cor: 'Branco',
+                    combustivel: 'Diesel',
+                    cambio: 'Manual',
+                    portas: '4',
+                    motor: '3.0 D4D 171cv',
+                    descricao: 'Toyota Hilux 3.0 D4D em perfeito estado, revisões em dia, sem histórico de acidentes. Picape robusta e confiável, ideal para trabalho e aventura. Equipada com ar-condicionado, direção hidráulica, vidros e travas elétricas, rodas de liga leve e muito mais.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+front',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+side',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+back',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+interior'
+                    ]
+                },
+                'toyota-hilux-gd6': {
+                    titulo: 'Toyota Hilux 2.8 GD6',
+                    preco: '2.700.000 Mts',
+                    ano: '2023',
+                    km: '15.000 km',
+                    cor: 'Preto',
+                    combustivel: 'Diesel',
+                    cambio: 'Automático',
+                    portas: '4',
+                    motor: '2.8 GD6 204cv',
+                    descricao: 'Toyota Hilux 2.8 GD6 nova geração, modelo topo de linha com apenas 15.000 km. Veículo completo com controle de tração e estabilidade, assistente de partida em rampa, câmera de ré, sensor de chuva, multimídia com Apple CarPlay e Android Auto, bancos de couro e muito mais.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+new+front',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+new+side',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+new+back',
+                        'https://source.unsplash.com/random/800x600/?toyota+hilux+new+interior'
+                    ]
+                },
+                'isuzu-dmax': {
+                    titulo: 'Isuzu D-Max 3.0',
+                    preco: '2.300.000 Mts',
+                    ano: '2020',
+                    km: '40.000 km',
+                    cor: 'Vermelho',
+                    combustivel: 'Diesel',
+                    cambio: 'Manual',
+                    portas: '4',
+                    motor: '3.0 Turbo Diesel 177cv',
+                    descricao: 'Isuzu D-Max 3.0 Turbo Diesel em ótimo estado, mecânica impecável, pintura original. Picape robusta com excelente desempenho em terrenos difíceis. Equipada com ar-condicionado, direção hidráulica, vidros e travas elétricas, rodas de liga leve e bancos em tecido de alta qualidade.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?isuzu+dmax+front',
+                        'https://source.unsplash.com/random/800x600/?isuzu+dmax+side',
+                        'https://source.unsplash.com/random/800x600/?isuzu+dmax+back',
+                        'https://source.unsplash.com/random/800x600/?isuzu+dmax+interior'
+                    ]
+                },
+                'nissan-navara': {
+                    titulo: 'Nissan Navara 2.5',
+                    preco: '2.400.000 Mts',
+                    ano: '2021',
+                    km: '30.000 km',
+                    cor: 'Cinza',
+                    combustivel: 'Diesel',
+                    cambio: 'Automático',
+                    portas: '4',
+                    motor: '2.5 Turbo Diesel 190cv',
+                    descricao: 'Nissan Navara 2.5 Turbo Diesel em excelente estado, único dono, sem histórico de colisões. Picape confortável com suspensão traseira multilink que proporciona conforto de carro de passeio. Completa com ar-condicionado digital, bancos de couro, multimídia com tela sensível ao toque, câmera de ré e sensor de estacionamento.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?nissan+navara+front',
+                        'https://source.unsplash.com/random/800x600/?nissan+navara+side',
+                        'https://source.unsplash.com/random/800x600/?nissan+navara+back',
+                        'https://source.unsplash.com/random/800x600/?nissan+navara+interior'
+                    ]
+                },
+                'toyota-fortuner-gd6': {
+                    titulo: 'Toyota Fortuner 2.8 GD6',
+                    preco: '2.600.000 Mts',
+                    ano: '2022',
+                    km: '20.000 km',
+                    cor: 'Prata',
+                    combustivel: 'Diesel',
+                    cambio: 'Automático',
+                    portas: '4',
+                    motor: '2.8 GD6 204cv',
+                    descricao: 'Toyota Fortuner 2.8 GD6 em estado de novo, revisões sempre realizadas na concessionária. SUV robusto e luxuoso, com controle de tração e estabilidade, assistente de partida em rampa, câmera 360°, sensor de chuva, multimídia com Apple CarPlay e Android Auto, bancos de couro e teto solar panorâmico.',
+                    imagens: [
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+new+front',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+new+side',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+new+back',
+                        'https://source.unsplash.com/random/800x600/?toyota+fortuner+new+interior'
+                    ]
+                }
+            };
+            
+            const carro = carros[carId];
+            
+            modalContent.innerHTML = `
+                <h2>${carro.titulo}</h2>
+                <img src="${carro.imagens[0]}" alt="${carro.titulo}" class="modal-main-img" id="modalMainImg">
+                
+                <div class="modal-carousel">
+                    ${carro.imagens.map((img, index) => `
+                        <img src="${img}" alt="${carro.titulo} - Foto ${index + 1}" 
+                             onclick="changeModalImage('${img}')" 
+                             class="${index === 0 ? 'active' : ''}">
+                    `).join('')}
+                </div>
+                
+                <div class="modal-price">${carro.preco}</div>
+                
+                <div class="modal-specs">
+                    <div class="spec-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Ano: ${carro.ano}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Quilometragem: ${carro.km}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Cor: ${carro.cor}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-gas-pump"></i>
+                        <span>Combustível: ${carro.combustivel}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Câmbio: ${carro.cambio}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Portas: ${carro.portas}</span>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fas fa-car"></i>
+                        <span>Motor: ${carro.motor}</span>
+                    </div>
+                </div>
+                
+                <h3>Descrição</h3>
+                <p>${carro.descricao}</p>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="https://wa.me/258867206476?text=Tenho%20interesse%20no%20${encodeURIComponent(carro.titulo)}" 
+                       class="btn-detalhes btn-whatsapp" target="_blank" style="max-width: 300px; margin: 0 auto;">
+                        <i class="fab fa-whatsapp"></i> Tenho Interesse
+                    </a>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function changeModalImage(imgSrc) {
+            document.getElementById('modalMainImg').src = imgSrc;
+            document.querySelectorAll('.modal-carousel img').forEach(img => {
+                img.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('carModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('carModal')) {
+                closeModal();
+            }
+        });
+        
+        // Formulário de contato
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aqui você implementaria o envio do formulário
+            // Por exemplo, usando Fetch API para enviar para um servidor
+            
+            // Simulação de envio bem-sucedido
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+        
+        // Máscara para telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.substring(0, 2) + ' ' + value.substring(2);
+            }
+            if (value.length > 5) {
+                value = value.substring(0, 5) + ' ' + value.substring(5);
+            }
+            if (value.length > 9) {
+                value = value.substring(0, 9) + ' ' + value.substring(9);
+            }
+            this.value = value;
+        });
+    </script>
+</body>
+</html>
